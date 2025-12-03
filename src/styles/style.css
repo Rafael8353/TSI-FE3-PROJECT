@@ -2,18 +2,25 @@
    Configuração Global e Tema
    ================================= */
 
-/* Variáveis de Cor (Tema Escuro) */
+
+@font-face {
+    font-family: 'Hoshiko';
+    src: url('../fonts/Hoshiko Satsuki.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 :root {
-    --color-bg-primary: #1a1a1a;    /* Fundo principal */
-    --color-bg-secondary: #242424; /* Fundo dos cards/header */
-    --color-border: #333;
-    --color-text-primary: #f0f0f0;  /* Texto principal */
-    --color-text-secondary: #aaa; /* Texto mais fraco */
-    --color-accent: #00aaff;     /* Azul para links e botões */
+    --color-bg-primary: #ffffff;    
+    --color-bg-secondary: #f9f9f9;   
+    --color-accent: #e60033;         
+    --color-text-primary: #1a1a1a;   
+    --color-text-secondary: #555555; 
+    --color-border: #e0e0e0;
     --font-main: 'Roboto', sans-serif;
 }
 
-/* Reset Básico */
+
 * {
     margin: 0;
     padding: 0;
@@ -67,17 +74,47 @@ img {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap; /* Permite quebrar em telas pequenas */
+    flex-wrap: wrap; 
     gap: 1rem;
 }
 
-.main-header #logo h1 {
-    margin: 0;
-    font-size: 1.8rem;
-    color: var(--color-text-primary);
+
+
+.main-header #logo {
+    display: flex;            
+    align-items: center;       
+    justify-content: center;   
+    gap: 15px;                 
+    text-decoration: none;
+    margin-bottom: 1rem;       
 }
+
+
+.logo-icon {
+    height: 80px;              
+    width: auto;               
+    transition: transform 0.3s ease; 
+}
+
+
+.main-header #logo h1 {
+    font-family: 'Hoshiko', cursive; 
+    font-size: 3.5rem;
+    color: var(--color-accent); 
+    margin: 0;                
+    line-height: 1;            
+    text-shadow: 3px 3px 0px #000; 
+    transition: transform 0.3s ease;
+}
+
+
+.main-header #logo:hover .logo-icon {
+    transform: scale(1.1) rotate(-5deg); /* A imagem cresce e gira */
+}
+
 .main-header #logo:hover h1 {
-    color: var(--color-accent);
+    transform: scale(1.05);
+    text-shadow: 5px 5px 0px #000; 
 }
 
 #search-form {
@@ -94,19 +131,23 @@ img {
     border-radius: 5px 0 0 5px;
 }
 
+
 #search-form button {
     padding: 0.75rem 1rem;
     font-size: 1rem;
     border: none;
-    background-color: var(--color-accent);
+    background-color: var(--color-accent); 
     color: white;
     cursor: pointer;
     border-radius: 0 5px 5px 0;
     transition: background-color 0.2s ease;
 }
 
+
 #search-form button:hover {
-    background-color: #0088cc;
+  
+    background-color: #b30027; 
+    
 }
 
 /* =================================
@@ -114,10 +155,6 @@ img {
    ================================= */
 .anime-grid {
     display: grid;
-    /* Grid responsivo:
-      - Tenta criar colunas de no mínimo 200px
-      - Cria quantas colunas couberem, com tamanho igual (1fr)
-    */
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 1.5rem;
     margin-bottom: 2rem;
@@ -126,28 +163,28 @@ img {
 .anime-card {
     background-color: var(--color-bg-secondary);
     border-radius: 8px;
-    overflow: hidden; /* Garante que a imagem não vaze */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    border: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .anime-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+    /* O card sobe um pouco */
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
 }
 
 .anime-card img {
     width: 100%;
-    /* Proporção de poster (aprox 2:3) */
     aspect-ratio: 2 / 3;
-    object-fit: cover; /* Garante que a imagem cubra o espaço */
+    object-fit: cover;
 }
 
 .anime-card h3 {
     font-size: 1rem;
     padding: 1rem;
     margin: 0;
-    /* Evita que títulos longos quebrem o layout */
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -158,7 +195,6 @@ img {
    ================================= */
 .details-container {
     display: grid;
-    /* Coluna 1 (sidebar) de 300px, Coluna 2 (main) ocupa o resto */
     grid-template-columns: 300px 1fr;
     gap: 2.5rem;
 }
@@ -279,7 +315,7 @@ img {
     }
 
     #search-input {
-        min-width: auto; /* Deixa o input menor */
+        min-width: auto; 
         width: 100%;
     }
     
@@ -287,13 +323,11 @@ img {
         width: 100%;
     }
     
-    /* Na página de detalhes, muda para 1 coluna */
     .details-container {
         grid-template-columns: 1fr;
     }
 
     .details-sidebar {
-        /* Centraliza a imagem no mobile */
         max-width: 300px;
         margin: 0 auto;
     }

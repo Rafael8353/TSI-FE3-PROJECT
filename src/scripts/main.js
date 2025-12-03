@@ -1,21 +1,29 @@
 import { AnimeService } from './api.js';
+import { Anime } from './models.js'; // Importa o modelo que definimos
+
+console.log("1. main.js carregado"); // Debug
 
 const animeService = new AnimeService();
-
 const searchForm = document.getElementById('search-form');
 const searchInput = document.getElementById('search-input');
 const mainContent = document.getElementById('main-content');
 
-function createAnimeCard(anime) {
+function createAnimeCard(animeData) {
+    // Instancia usando o modelo Acadêmico
+    const anime = new Anime(animeData);
+
     const card = document.createElement('div');
     card.className = 'anime-card';
     
     card.innerHTML = `
-        <a href="details.html?id=${anime.mal_id}">
-            <img src="${anime.images.jpg.image_url}" alt="${anime.title}">
-            <h3>${anime.title}</h3>
-            <div style="padding: 0 1rem 1rem; color: var(--color-accent);">
-                ★ ${anime.score || 'N/A'}
+        <a href="details.html?id=${anime.id}">
+            <img src="${anime.image}" alt="${anime.title}">
+            <div style="padding: 1rem;">
+                <h3>${anime.title}</h3>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 0.5rem; color: #666; font-size: 0.9rem;">
+                    <span style="color: var(--color-accent); font-weight: bold;">★ ${anime.score}</span>
+                    <span>${anime.formatInfo()}</span>
+                </div>
             </div>
         </a>
     `;
@@ -33,8 +41,8 @@ function renderGallery(animes) {
     const grid = document.createElement('div');
     grid.className = 'anime-grid';
 
-    animes.forEach(anime => {
-        const gridItem = createAnimeCard(anime);
+    animes.forEach(animeData => {
+        const gridItem = createAnimeCard(animeData);
         grid.appendChild(gridItem);
     });
 
@@ -51,8 +59,8 @@ searchForm.addEventListener('submit', async (e) => {
     }
 });
 
-// busca os populares 
 window.addEventListener('load', async () => {
+    console.log("2. Página carregada");
     const urlParams = new URLSearchParams(window.location.search);
     const query = urlParams.get('q');
 
@@ -61,7 +69,6 @@ window.addEventListener('load', async () => {
         const results = await animeService.searchAnimes(query);
         renderGallery(results);
     } else {
-        // Se não tiver pesquisa, carrega os TOP ANIMES
         const topAnimes = await animeService.getTopAnimes();
         renderGallery(topAnimes);
     }
