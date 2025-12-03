@@ -4,7 +4,7 @@ Aplicação web desenvolvida para a disciplina de Programação Web, com foco na
 
 ## 👥 Integrantes
 
-* **[Rafael da Silveira Gonçales e Leonardo Ennes]**
+* **Rafael da Silveira Gonçales e Leonardo Ennes**
 
 
 ---

@@ -1,7 +1,6 @@
 import { AnimeService } from './api.js';
-import { Anime } from './models.js'; // Importa o modelo que definimos
+import { Anime } from './models.js';
 
-console.log("1. main.js carregado"); // Debug
 
 const animeService = new AnimeService();
 const searchForm = document.getElementById('search-form');
@@ -9,7 +8,7 @@ const searchInput = document.getElementById('search-input');
 const mainContent = document.getElementById('main-content');
 
 function createAnimeCard(animeData) {
-    // Instancia usando o modelo Acadêmico
+   
     const anime = new Anime(animeData);
 
     const card = document.createElement('div');

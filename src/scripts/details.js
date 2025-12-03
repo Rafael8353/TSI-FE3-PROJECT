@@ -1,5 +1,5 @@
 import { AnimeService } from './api.js';
-// NOVO IMPORT: Trazendo o modelo de Personagem e o Delay (Promise)
+
 import { Character, delay } from './models.js';
 
 const animeService = new AnimeService();
@@ -66,8 +66,7 @@ async function loadDetails() {
 }
 
 async function loadCharacters(id) {
-    // REQUISITO 3.1: Promise Customizada
-    // Esperamos 500ms para não bloquear a API (Rate Limit)
+
     await delay(500);
 
     if (!animeService.getAnimeCharacters) return;
@@ -78,14 +77,13 @@ async function loadCharacters(id) {
         els.charactersGrid.innerHTML = ''; 
         
         charactersData.forEach(charData => {
-            // REQUISITO 2.3: Função Construtora
-            // Instanciamos o objeto Character para limpar os dados
+
             const char = new Character(charData);
 
             const card = document.createElement('div');
             card.className = 'character-card';
             
-            // Agora usamos as propriedades limpas do objeto 'char'
+      
             card.innerHTML = `
                 <img src="${char.image}" alt="${char.name}">
                 <div style="padding: 0.5rem;">
@@ -101,7 +99,7 @@ async function loadCharacters(id) {
 }
 
 async function loadTrailer(id) {
-    // Pequeno delay também para o trailer, para garantir que não dê erro 429
+    // Pequeno delay para o trailer, para garantir que não dê erro
     await delay(1000);
 
     if (!animeService.getAnimeVideos) return;

@@ -1,9 +1,9 @@
-// ACADÊMICO: Importamos a configuração do Objeto Literal que criamos
+
 import { AppConfig } from './models.js';
 
 export class AnimeService {
     constructor() {
-        // ACADÊMICO: Usamos a propriedade do objeto literal em vez de texto solto
+
         this.baseUrl = AppConfig.apiBaseUrl;
     }
 
@@ -42,7 +42,7 @@ export class AnimeService {
         }
     }
 
-    // Busca os personagens do anime
+    
     async getAnimeCharacters(id) {
         try {
             const response = await fetch(`${this.baseUrl}/anime/${id}/characters`);
@@ -56,7 +56,7 @@ export class AnimeService {
         }
     }
 
-    // Busca os vídeos (trailers)
+   
     async getAnimeVideos(id) {
         try {
             const response = await fetch(`${this.baseUrl}/anime/${id}/videos`);
